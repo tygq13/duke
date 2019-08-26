@@ -30,9 +30,19 @@ public class UI {
 
 	public void printList(Task[] list, int index) {
 		printLine();
+		System.out.println("Here are the tasks in your list: ");
 		for(int i = 0; i < index; i++) {
-			System.out.println(i + ". " + list[i].get());
+			if (!list[i].getStatus()) {
+				System.out.println((i+1) + ". [" + list[i].getStatusIcon() + "]" + list[i].getTask());
+			}
 		}
+		printLine();
+	}
+
+	public void printDone(Task finished) {
+		printLine();
+		System.out.println("Nice! I've marked this task as done:");
+		System.out.println("[" + finished.getStatusIcon() + "]" + finished.getTask());
 		printLine();
 	}
 }

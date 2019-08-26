@@ -18,6 +18,11 @@ public class Duke {
         	if (input.equals("bye")) {
         		user.exit();
         		break;
+        	} else if (input.substring(0,4).equals("done")) {
+        		String[] s = input.split(" "); 
+        		Task finished= list[Integer.parseInt(s[1]) - 1];
+        		finished.markAsDone();
+        		user.printDone(finished);
         	} else if (input.equals("list")) {
         		user.printList(list, index);
         	} else {

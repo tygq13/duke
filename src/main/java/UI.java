@@ -1,3 +1,5 @@
+import java.util.*;
+
 public class UI {
 	private void printLine() {
 		System.out.println("---------------------------------------------------");
@@ -22,19 +24,20 @@ public class UI {
 		printLine();
 	}
 
-	public void printAdd(String input) {
+	public void printTask(ArrayList<Task>list) {
 		printLine();
-		System.out.println("added: " + input);
+		System.out.println("Got it. I've added this task:");
+		Task t = list.get(list.size() -1);
+		System.out.println("  " + t);
+		System.out.println("Now you have " + list.size() + " tasks in the list.");
 		printLine();
 	}	
 
-	public void printList(Task[] list, int index) {
+	public void printList(ArrayList<Task>list) {
 		printLine();
 		System.out.println("Here are the tasks in your list: ");
-		for(int i = 0; i < index; i++) {
-			if (!list[i].getStatus()) {
-				System.out.println((i+1) + ". [" + list[i].getStatusIcon() + "]" + list[i].getTask());
-			}
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println((i + 1) + "." + list.get(i));
 		}
 		printLine();
 	}

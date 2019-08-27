@@ -1,6 +1,65 @@
 import java.util.*;
 
 public class Duke {
+    private static UI user = new UI();
+    private static Scanner in = new Scanner(System.in);
+    private static ArrayList<Task>list = new ArrayList<>();
+
+    public static void exit() {
+        user.exit();
+    }
+
+    public static void todo (String[] input) throws DukeException {
+        if (input.length < 2) {
+            throw new DukeException("OOPS!!! The description of a todo cannot be empty");
+        }
+        list.add(new Todo(String.join(" ", input).substring(5)));
+        user.printTask(list);
+    }
+
+    public static void deadline (String[] input) throws DukeException {
+        if (input.length < 2) {
+            throw new DukeException("OOPS!!! The description of a deadline cannot be empty");
+        } else {
+            String line = String.join(" ", input).substring(9);
+            int index = line.indexOf('/');
+            if (index == -1) {
+                throw new DukeException("OOPS!!! The date of a deadline cannot be empty");                
+            }
+            list.add(new Deadline(line.substring(0, index -1), line.substring(index + 1)));
+            user.printTask(list);
+        }
+    }
+
+    public static void event (String[] input) throws DukeException {
+        if (input.length < 2) {
+            throw new DukeException("OOPS!!! The description of an event cannot be empty");
+        } else {
+            String line = String.join(" ", input).substring(6);
+            int index = line.indexOf('/');
+            if (index == -1) {
+                throw new DukeException("OOPS!!! The date of an event cannot be empty");                
+            }
+            list.add(new Event(line.substring(0, index -1), line.substring(index + 1)));
+            user.printTask(list);
+        }
+    }
+    public static void done(String input[]) throws DukeException{
+        if (input.length < 2) {
+            throw new DukeException("OOPS!!! The task number cannot be empty");
+        } else {
+            int taskNumber = Integer.parseInt(input[1]);
+            if (taskNumber > list.size() || taskNumber < 0) {
+                throw new DukeException("OOPS!!! invalid task number");
+            }
+        }
+        Task finished = list.get(Integer.parseInt(input[1]) - 1);
+        finished.markAsDone();
+        user.printDone(finished);
+    }
+    public static void list() {
+        user.printList(list);
+    }
 
     public static void main(String[] args) {
         String logo = " ____        _        \n"
@@ -9,46 +68,41 @@ public class Duke {
                 + "| |_| | |_| |   <  __/\n"
                 + "|____/ \\__,_|_|\\_\\___|\n";
         System.out.println("Hello from\n" + logo);
-
-        UI user = new UI();
         user.greet();
-        Scanner in = new Scanner(System.in);
-        ArrayList<Task>list = new ArrayList<>();
 
         while (true) {
-        	String input[] = in.nextLine().split(" ");
-        	if (input[0].equals("bye")) {
-        		user.exit();
+            String [] input = in.nextLine().split(" ");
+        	String command = input[0];
+        	if (command.equals("bye")) {
         		break;
-        	} else if (input[0].equals("todo")) {
-                list.add(new Todo(String.join(" ", input).substring(5)));
-                user.printTask(list);
-            } else if (input[0].equals("deadline")) {
-                String s = String.join(" ", input).substring(9);
-                int index = s.indexOf('/');
-                if (index == -1) {
-                    System.out.println("please specify a deadline");
-                } else {
-                    list.add(new Deadline(s.substring(0, index - 1), s.substring(index+1)));
-                    user.printTask(list);
+        	} else if (command.equals("todo")) {
+                try{
+                    todo(input);
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
                 }
-            } else if (input[0].equals("event")) {
-                String s = String.join(" ", input).substring(6);
-                int index = s.indexOf('/');
-                if (index == -1) {
-                    System.out.println("please specify a time");
-                } else {
-                    list.add(new Event(s.substring(0, index - 1), s.substring(index+1)));
-                    user.printTask(list);
+            } else if (command.equals("deadline")) {
+                try{
+                    deadline(input);
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
                 }
-            } else if (input[0].equals("done")) {
-        		Task finished = list.get(Integer.parseInt(input[1]) - 1);
-        		finished.markAsDone();
-        		user.printDone(finished);
-        	} else if (input[0].equals("list")) {
-        		user.printList(list);
+            } else if (command.equals("event")) {
+                try{
+                    event(input);
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
+            } else if (command.equals("done")) {
+                try{
+                    done(input);
+                } catch (DukeException e) {
+                    System.out.println(e.getMessage());
+                }
+        	} else if (command.equals("list")) {
+        		list();
         	} else {
-        		System.out.println("wrong command");
+        		System.out.println("invalid command");
         	}
 
         }

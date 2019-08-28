@@ -1,6 +1,7 @@
 public class Task {
 	protected String task;
 	protected boolean isDone;
+	protected char type;
 
 	public Task() {
 		this(null);
@@ -11,8 +12,12 @@ public class Task {
 		this.isDone = false;
 	}
 
-	public String getTask() {
-		return task;
+	public String[] getTask() {
+		return new String[] {task};
+	}
+
+	public char getType() {
+		return type;
 	}
 
 	public boolean getStatus() {
@@ -25,7 +30,7 @@ public class Task {
 
 	@Override
 	public String toString() {
-		return "[" + getStatusIcon() + "] " + getTask(); 
+		return "[" + getStatusIcon() + "] " + task; 
 	}
 
 	public void markAsDone() {

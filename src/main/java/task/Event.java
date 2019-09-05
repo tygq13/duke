@@ -1,17 +1,20 @@
 package task;
 
+import java.util.Date;
+import util.Parser;
+
 public class Event extends Task{
-	protected String at;
+	private Date at;
 
 	public Event() {
 		this(null, null);
 	}
 
-	public Event(String task, String at) {
+	public Event(String task, Date at) {
 		this(false, task, at);
 	}
 
-	public Event(boolean done, String task, String at) {
+	public Event(boolean done, String task, Date at) {
 		super(task);
 		this.at = at;
 		this.isDone = done;
@@ -20,11 +23,11 @@ public class Event extends Task{
 
 	@Override
 	public String toString() {
-		return "[E]" + super.toString() + " (at: " + at + ")";
+		return "[E]" + super.toString() + " (at: " + Parser.parseDateToString(at) + ")";
 	}
 
 	@Override
 	public String[] getTask() {
-		return new String[] {task, at};
+		return new String[] {task, Parser.parseDateToString(at)};
 	}
 }

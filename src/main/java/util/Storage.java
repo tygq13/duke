@@ -37,9 +37,9 @@ public class Storage {
 			    if (tasks[0].trim().equals("T")) {
 			        list.add(new Todo(Boolean.parseBoolean(tasks[1]), tasks[2].trim()));
 			    } else if (tasks[0].trim().equals("D")) {
-			        list.add(new Deadline(Boolean.parseBoolean(tasks[1]), tasks[2].trim(), tasks[3].trim()));
+			        list.add(new Deadline(Boolean.parseBoolean(tasks[1]), tasks[2].trim(), Parser.parseStringToDate(tasks[3].trim())));
 			    } else if (tasks[0].trim().equals("E")) {
-			        list.add(new Event(Boolean.parseBoolean(tasks[1]), tasks[2].trim(), tasks[3].trim()));
+			        list.add(new Event(Boolean.parseBoolean(tasks[1]), tasks[2].trim(), Parser.parseStringToDate(tasks[3].trim())));
 			    }
 			}
 		} catch (FileNotFoundException e) {

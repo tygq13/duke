@@ -9,6 +9,8 @@ public class Message {
 		= "OOPS!!! The task number cannot be empty";
 	public static final String INVALID_TASK_NUMBER
 		= "OOPS!!! The task number is invalid";
+	public static final String INVALID_DATE_FORMAT
+		= "OOPS!!! The date format is invalid. Please specify date in 'dd/mm/yy'";
 	public static final String INVALID_COMMAND
 		= "OOPS!!! The command is invalid. Enter 'help' to view the list of command";
 	public static final String DIRECTORY_NOT_FOUND

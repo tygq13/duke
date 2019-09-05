@@ -1,17 +1,20 @@
 package task;
 
+import java.util.Date;
+import util.Parser;
+
 public class Deadline extends Task {
-	protected String by;
+	private Date by;
 
 	public Deadline() {
 		this(null, null);
 	}
 
-	public Deadline(String task, String by) {
+	public Deadline(String task, Date by) {
 		this(false, task, by);
 	}
 
-	public Deadline(boolean done, String task, String by) {
+	public Deadline(boolean done, String task, Date by) {
 		super(task);
 		this.by = by;
 		this.isDone = done;
@@ -20,11 +23,11 @@ public class Deadline extends Task {
 
 	@Override
 	public String toString() {
-		return "[D]" + super.toString() + " (by: " + by + ")";
+		return "[D]" + super.toString() + " (by: " + Parser.parseDateToString(by) + ")";
 	}
 
 	@Override
 	public String[] getTask() {
-		return new String[] {task, by};
+		return new String[] {task, Parser.parseDateToString(by)};
 	}
 }

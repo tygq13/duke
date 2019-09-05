@@ -1,5 +1,7 @@
 package command;
 
+import java.util.Date;
+
 import ui.*;
 import util.Storage;
 import task.TaskList;
@@ -8,7 +10,7 @@ import exception.DukeException;
 
 public class DeadlineCommand implements Command{
 	private String description;
-	private String date;
+	private Date date;
 
 	public DeadlineCommand() {
 		this(null);
@@ -18,7 +20,7 @@ public class DeadlineCommand implements Command{
 		this(description, null);
 	}
 
-	public DeadlineCommand(String description, String date) {
+	public DeadlineCommand(String description, Date date) {
 		this.description = description;
 		this.date = date;
 	}

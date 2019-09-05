@@ -1,5 +1,7 @@
 package command;
 
+import java.util.Date;
+
 import ui.*;
 import util.Storage;
 import task.TaskList;
@@ -8,7 +10,7 @@ import exception.DukeException;
 
 public class EventCommand implements Command{
 	private String description;
-	private String date;
+	private Date date;
 
 	public EventCommand() {
 		this(null);
@@ -18,7 +20,7 @@ public class EventCommand implements Command{
 		this(description, null);
 	}
 
-	public EventCommand(String description, String date) {
+	public EventCommand(String description, Date date) {
 		this.description = description;
 		this.date = date;
 	}

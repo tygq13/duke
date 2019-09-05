@@ -1,12 +1,15 @@
 package util;
 
 import java.util.Hashtable;
-import java.io.IOException;
+import java.util.Date;
+import java.util.TimeZone;
+import java.util.Locale;
+import java.text.SimpleDateFormat;
+import java.text.ParseException;
 
 import command.*;
 import ui.Message;
 import exception.DukeException;
-import task.Task;
 
 public class Parser {
 	public enum Parts {
@@ -17,7 +20,7 @@ public class Parser {
 		Hashtable<Parts, String> dict= parseToDict(fullCommand);
 		String command = dict.get(Parts.COMMAND);
 		String description = dict.get(Parts.DESCRIPTION);
-		String date = parseDate(dict.get(Parts.DATE));
+		Date date = parseStringToDate(dict.get(Parts.DATE));
 		switch (command) {
 			case "todo":
 				return new TodoCommand(description);
@@ -35,6 +38,7 @@ public class Parser {
 			case "fuck":
 				return new ExitCommand();
 			//todo: case "delete":
+			//todo: case "help":
 			default:
 				throw new DukeException(Message.INVALID_COMMAND);
 		} 
@@ -44,26 +48,43 @@ public class Parser {
 		Hashtable<Parts, String> dict = new Hashtable<>();
 		String[] inputs = fullCommand.split(" ");
 		String command = inputs[0];
-		dict.put(Parts.COMMAND, command.toLowerCase());
+		dict.put(Parts.COMMAND, command.trim().toLowerCase());
 		if (inputs.length >= 2) {
 			// have description
 			int descriptionIndex = fullCommand.indexOf(" ") + 1;
-		    int dateIndex = fullCommand.indexOf('/');
+		    int dateIndex = fullCommand.indexOf("/at ") > fullCommand.indexOf("/by ") ? 
+		    	fullCommand.indexOf("/at ") : fullCommand.indexOf("/by ");
 		    if (dateIndex != -1) {
 		    	// have date
 		    	String description = fullCommand.substring(descriptionIndex, dateIndex -1);
 		    	dict.put(Parts.DESCRIPTION, description);
-		    	String date = fullCommand.substring(dateIndex + 1);            
+		    	String date = fullCommand.substring(dateIndex + 3).trim();            
 		    	dict.put(Parts.DATE, date);
 		    } else {
-				String description = fullCommand.substring(descriptionIndex);
+				String description = fullCommand.substring(descriptionIndex).trim();
 				dict.put(Parts.DESCRIPTION, description);
 			}
 		}
 		return dict;
 	}
 
-	private static String parseDate(String date) {
-		return date;
+	public static Date parseStringToDate(String dateString) throws DukeException {
+		if (dateString == null) {
+			return null;
+		}
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+		formatter.setTimeZone(TimeZone.getTimeZone("GMT-8:00"));
+		try {
+			Date date = formatter.parse(dateString);
+			return date;
+		} catch (ParseException e) {
+			throw new DukeException(Message.INVALID_DATE_FORMAT);
+		}
+	}
+
+	public static String parseDateToString(Date date) {
+		SimpleDateFormat formatter = new SimpleDateFormat("dd/MM/yyyy", Locale.ENGLISH);
+		formatter.setTimeZone(TimeZone.getTimeZone("GMT-8:00"));
+		return formatter.format(date);
 	}
 }

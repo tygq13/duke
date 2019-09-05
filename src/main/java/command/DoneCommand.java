@@ -22,9 +22,13 @@ public class DoneCommand implements Command{
 		if (number == null) {
 			throw new DukeException(Message.EMPTY_TASK_NUMBER);
 		}
-		int taskNumber = Integer.parseInt(number);
-		if (taskNumber > list.size() || taskNumber <= 0) {
-		    throw new DukeException(Message.INVALID_TASK_NUMBER);
+		try {
+			int taskNumber = Integer.parseInt(number);
+			if (taskNumber >= list.size() || taskNumber <= 0) {
+				throw new DukeException(Message.INVALID_TASK_NUMBER);
+			}
+		} catch (NumberFormatException e) {
+			throw new DukeException(Message.INVALID_TASK_NUMBER);
 		}
 		return true;
 	}

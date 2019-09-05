@@ -51,4 +51,24 @@ public class Ui {
 	public void showError(String error) {
 		System.out.println(error);
 	}
+
+	public void showLoadingError() {
+		showLine();
+		System.out.println("OOPS!!! IO error encountered when reading from D:\\codes\\java\\duke\\data\\duke.txt");
+	}
+
+	public void showHelp() {
+		String help = "Currently we support the following commands:\n"
+				+ "Manipulate tasks:\n"
+				+ String.format("%1$-50s", "  'Todo <description>'") + "add a Todo task with description\n"
+				+ String.format("%1$-50s", "  'Deadline <description> /by <dd/mm/yy>'") + "add a Deadline task with description and time\n"
+				+ String.format("%1$-50s", "  'Event <description> /by <dd/mm/yy>'") + "add a Event task with description and time\n"
+				+ String.format("%1$-50s", "  'Done <number>'") + "mark the nth task as finished\n"
+				+ "Show task list:\n"
+				+ String.format("%1$-50s", "  'Todo <description>'") + "show the list of tasks\n"
+				+ "Miscellanious:\n"
+				+ String.format("%1$-50s", "  'bye' OR 'exit' OR 'quit'") + "to exit the programme\n"
+				+ String.format("%1$-50s", "  'help'") + "to show a list of available command\n";
+		System.out.print(help);
+	}
 }

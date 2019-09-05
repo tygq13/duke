@@ -1,4 +1,4 @@
-import exception.DukeException;
+import exception.*;
 import task.TaskList;
 import ui.Ui;
 import util.Parser;
@@ -17,7 +17,7 @@ public class Duke {
         try {
             tasks = new TaskList(storage.load());
         } catch (DukeException e) {
-            ui.showError(e.getMessage());
+            ui.showLoadingError();
             tasks = new TaskList();
         }
     }

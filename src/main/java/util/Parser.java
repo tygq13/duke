@@ -38,7 +38,8 @@ public class Parser {
 			case "fuck":
 				return new ExitCommand();
 			//todo: case "delete":
-			//todo: case "help":
+			case "help":
+				return new HelpCommand();
 			default:
 				throw new DukeException(Message.INVALID_COMMAND);
 		} 

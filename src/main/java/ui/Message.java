@@ -13,6 +13,4 @@ public class Message {
 		= "OOPS!!! The date format is invalid. Please specify date in 'dd/mm/yy'";
 	public static final String INVALID_COMMAND
 		= "OOPS!!! The command is invalid. Enter 'help' to view the list of command";
-	public static final String DIRECTORY_NOT_FOUND
-		= "OOPS!!! The directory D:\\codes\\java\\duke\\data is not found. Trying to create one for you.";
 }

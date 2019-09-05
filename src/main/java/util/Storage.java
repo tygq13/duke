@@ -9,9 +9,11 @@ import java.io.IOException;
 import java.util.Scanner;
 import java.util.ArrayList;
 
+import exception.DukeLoadingException;
 import task.*;
 import ui.Message;
 import exception.DukeException;
+import exception.DukeLoadingException;
 
 public class Storage {
 	private String filePath;
@@ -21,9 +23,11 @@ public class Storage {
 		this.filePath = filePath;
 	}
 
-	public void create() {
+	public void create() throws IOException{
 		File directory = new File(filePath);
 		directory.mkdir();
+		File file = new File(filePath + File.separator + fileName);
+		file.createNewFile();
 	}
 
 	public ArrayList<Task> load() throws DukeException {
@@ -43,9 +47,11 @@ public class Storage {
 			    }
 			}
 		} catch (FileNotFoundException e) {
-			create();
-			// todo: add loading exception
-			throw new DukeException(Message.DIRECTORY_NOT_FOUND);
+			try {
+				create();
+			} catch (IOException error) {
+				throw new DukeLoadingException();
+			}
 		}
 		return list;
 	}

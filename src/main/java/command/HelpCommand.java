@@ -2,17 +2,17 @@ package command;
 
 import ui.Ui;
 import util.Storage;
-import task.TaskList;;
+import task.TaskList;
 
-public class ExitCommand implements Command{
+public class HelpCommand implements Command{
 
 	@Override
 	public boolean isExit() {
-		return true;
+		return false;
 	}
 
 	@Override
 	public void execute(TaskList tasks, Ui ui, Storage storage) {
-		ui.showExit();
+		ui.showHelp();
 	}
 }

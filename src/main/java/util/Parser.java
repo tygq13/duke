@@ -36,6 +36,8 @@ public class Parser {
 				return new DeleteCommand(description);
 			case "help":
 				return new HelpCommand();
+			case "find":
+				return new FindCommand(description);
 			case "bye":
 			case "exit":
 			case "quit":
@@ -53,7 +55,7 @@ public class Parser {
 		dict.put(Parts.COMMAND, command.trim().toLowerCase());
 		if (inputs.length >= 2) {
 			// have description
-			int descriptionIndex = fullCommand.indexOf(" ") + 1;
+			int descriptionIndex = fullCommand.indexOf(" ");
 		    int dateIndex = fullCommand.indexOf("/at ") > fullCommand.indexOf("/by ") ? 
 		    	fullCommand.indexOf("/at ") : fullCommand.indexOf("/by ");
 		    if (dateIndex != -1) {

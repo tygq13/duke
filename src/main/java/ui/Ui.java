@@ -43,6 +43,13 @@ public class Ui {
 		}
 	}
 
+	public void showFind(TaskList list) {
+		System.out.println("Here are the matching tasks in your list:");
+		for(int i = 0; i < list.size(); i++) {
+			System.out.println((i + 1) + "." + list.get(i));
+		}
+	}
+
 	public void showDone(Task finished) {
 		System.out.println("Nice! I've marked this task as done:");
 		System.out.println(finished);

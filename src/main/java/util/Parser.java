@@ -32,14 +32,15 @@ public class Parser {
 				return new ListCommand();
 			case "done":
 				return new DoneCommand(description);
+			case "delete":
+				return new DeleteCommand(description);
+			case "help":
+				return new HelpCommand();
 			case "bye":
 			case "exit":
 			case "quit":
 			case "fuck":
 				return new ExitCommand();
-			//todo: case "delete":
-			case "help":
-				return new HelpCommand();
 			default:
 				throw new DukeException(Message.INVALID_COMMAND);
 		} 

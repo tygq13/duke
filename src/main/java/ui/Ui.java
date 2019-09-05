@@ -48,6 +48,12 @@ public class Ui {
 		System.out.println(finished);
 	}
 
+	public void showRemove(Task finished, TaskList list) {
+		System.out.println("Nice! I've removed this task:");
+		System.out.println(finished);
+		System.out.println("Now you have " + list.size() + " tasks in the list.");
+	}
+
 	public void showError(String error) {
 		System.out.println(error);
 	}

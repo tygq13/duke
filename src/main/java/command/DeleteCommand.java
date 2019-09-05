@@ -7,14 +7,14 @@ import task.Task;
 import exception.DukeException;
 
 
-public class DoneCommand implements Command{
+public class DeleteCommand implements Command{
 	String number;
 
-	public DoneCommand() {
+	public DeleteCommand() {
 		this(null);
 	}
 
-	public DoneCommand(String number) {
+	public DeleteCommand(String number) {
 		this.number = number;
 	}
 
@@ -43,9 +43,9 @@ public class DoneCommand implements Command{
 		if (isValid(tasks)) {
 			int taskIndex = Integer.parseInt(number) - 1;
 			Task t = tasks.get(taskIndex);
-			t.markAsDone();
+			tasks.remove(taskIndex);
 			storage.save(tasks);
-			ui.showDone(t);
+			ui.showRemove(t, tasks);
 		}
 	}
 }

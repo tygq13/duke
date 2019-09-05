@@ -20,6 +20,7 @@ public class Deadline extends Task {
 		this.isDone = done;
 		this.type = 'D';
 	}
+	//todo: support pure string version like 'today' 'tomorrow'
 
 	@Override
 	public String toString() {

@@ -1,6 +1,9 @@
+/**
+ * This handles command that find a list of tasks with given keyword.
+ *
+ * @author tygq13
+ */
 package command;
-
-import java.util.ArrayList;
 
 import ui.Ui;
 import util.Storage;
@@ -13,11 +16,23 @@ public class FindCommand implements Command{
 		this.keyword = keyword;
 	}
 
+	/**
+	 * Always returns false since this is not an exit command.
+	 *
+	 * @return false.
+	 */
 	@Override
 	public boolean isExit() {
 		return false;
 	}
 
+	/**
+	 * Shows a list of task with the specified keyword in description or date.
+	 *
+	 * @param tasks the list of tasks.
+	 * @param ui the user interface to output message.
+	 * @param storage storage of Duke.
+	 */
 	@Override
 	public void execute(TaskList tasks, Ui ui, Storage storage) {
 		TaskList tasksFoundAt = new TaskList();

@@ -1,5 +1,11 @@
+/**
+ * The task contain all message used when errors occur.
+ *
+ * @author tygq13
+ */
 package ui;
 
+//todo: could create relevant exception classes with the specific message
 public class Message {
 	public static final String EMPTY_DESCRIPTION 
 		= "OOPS!!! The description of a task cannot be empty";

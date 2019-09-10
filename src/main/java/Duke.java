@@ -1,3 +1,4 @@
+
 import exception.*;
 import task.TaskList;
 import ui.Ui;
@@ -22,6 +23,7 @@ public class Duke {
         }
     }
 
+
     public void run() {
         ui.showWelcome();
         boolean isExit = false;
@@ -39,7 +41,7 @@ public class Duke {
             }
         }
     }
-
+    
     public static void main(String[] args) {
         new Duke("D:\\codes\\java\\duke\\data").run();
     }

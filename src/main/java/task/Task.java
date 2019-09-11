@@ -5,10 +5,11 @@
  */
 package task;
 
-public class Task {
+import java.io.Serializable;
+
+public class Task implements Serializable{
 	protected String description;
 	protected boolean isDone;
-	protected char type;
 
 	/**
 	 * Default constructor.
@@ -36,15 +37,6 @@ public class Task {
 	 */
 	public String[] getTask() {
 		return new String[] {description};
-	}
-
-	/**
-	 * Gets the type of the task.
-	 *
-	 * @return one character that indicates the type of the task.
-	 */
-	public char getType() {
-		return type;
 	}
 
 	/**

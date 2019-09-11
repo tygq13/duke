@@ -32,7 +32,6 @@ public class Event extends Task{
 
 	/**
 	 * Constructor with three arguments.
-	 * Set the type of the task to 'E' by default.
 	 *
 	 * @param done indicate whether the event has completed.
 	 * @param description the description of the event.
@@ -42,7 +41,6 @@ public class Event extends Task{
 		super(description);
 		this.at = at;
 		this.isDone = done;
-		this.type = 'E';
 	}
 
 	/**

@@ -36,7 +36,8 @@ public class FindCommand implements Command{
 	@Override
 	public void execute(TaskList tasks, Ui ui, Storage storage) {
 		TaskList tasksFoundAt = new TaskList();
-		for (Task task : tasks.list()) {
+		for (int i = 0; i < tasks.size(); i++) {
+			Task task = tasks.get(i);
 			for (String description : task.getTask()) {
 				if (description.contains(keyword)) {
 					tasksFoundAt.add(task);

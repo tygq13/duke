@@ -29,7 +29,6 @@ public class Todo extends Task{
 	public Todo(boolean done, String description) {
 		super(description);
 		this.isDone = done;
-		this.type = 'T';
 	}
 
 	/**

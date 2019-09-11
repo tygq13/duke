@@ -32,7 +32,6 @@ public class Deadline extends Task {
 
 	/**
 	 * Constructor with three arguments.
-	 * Sets the type of the task to 'D' by default.
 	 *
 	 * @param done true if the task is marked as done, otherwise false.
 	 * @param description the description of the task.
@@ -42,7 +41,6 @@ public class Deadline extends Task {
 		super(description);
 		this.by = by;
 		this.isDone = done;
-		this.type = 'D';
 	}
 	//todo: support pure string version like 'today' 'tomorrow'
 

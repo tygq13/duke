@@ -19,4 +19,6 @@ public class Message {
 		= "OOPS!!! The date format is invalid. Please specify date in 'dd/mm/yy'";
 	public static final String INVALID_COMMAND
 		= "OOPS!!! The command is invalid. Enter 'help' to view the list of command";
+	public static final String IO_ERROR
+		= "OOPS!!! The data file is deprecated. Unable to read or write in 'data/duke.txt'";
 }

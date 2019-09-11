@@ -65,13 +65,4 @@ public class TaskList {
 		list.remove(index);
 	}
 
-	/**
-	 * Returns the whole list of task.
-	 *
-	 * @return the list of task.
-	 */
-	public ArrayList<Task> list() {
-		//todo: bad idea to turn the whole list, try to remove this method.
-		return list;
-	}
 }

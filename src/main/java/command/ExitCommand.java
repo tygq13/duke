@@ -5,6 +5,7 @@
  */
 package command;
 
+import exception.DukeException;
 import ui.Ui;
 import util.Storage;
 import task.TaskList;;
@@ -28,9 +29,11 @@ public class ExitCommand implements Command{
 	 * @param tasks the list of tasks.
 	 * @param ui the user interface to output message.
 	 * @param storage storage of Duke.
+	 * @throws DukeException exception happens during storage.
 	 */
 	@Override
-	public void execute(TaskList tasks, Ui ui, Storage storage) {
+	public void execute(TaskList tasks, Ui ui, Storage storage) throws DukeException {
+		storage.save(tasks);
 		ui.showExit();
 	}
 }
